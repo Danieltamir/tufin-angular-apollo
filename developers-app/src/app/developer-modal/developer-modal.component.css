@@ -1,0 +1,9 @@
+.modal-header {
+    background: #007bff;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+::ng-deep .modal-dialog {
+    max-width: 1000px;
+}

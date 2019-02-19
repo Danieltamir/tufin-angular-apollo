@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "outDir": "../dist/server",
+    "module": "commonjs"
+  },
+  "include": ["./server/**/*.ts"],
+  "exclude": ["test.ts", "**/*.spec.ts"]
+}

@@ -1,0 +1,20 @@
+<div class="row app-header">
+    Welcome to Tufin Developer application
+</div>
+<br>
+<div class="row">
+    <div class="col-md-4"><button class="btn btn-primary btn-block" (click)="openDeveloperModal(null)">Add Developer</button></div>
+    <div class="col-md-4"><button class="btn btn-warning btn-block" >Edit Developer</button></div>
+    <div class="col-md-4"><button class="btn btn-danger btn-block">Delete Developer</button></div>
+</div>
+<br>
+<div class="card" *ngFor="let developer of developers; let index = index">
+    <div class="card-body">
+        <div class="row" (click)="openDeveloperModal(index)">
+            <div class="col-md-3">{{developer.firstName}}</div>
+            <div class="col-md-3">{{developer.lastName}}</div>
+            <div class="col-md-3">{{developer.age}}</div>
+            <div class="col-md-1">X</div>
+        </div>
+    </div>
+</div>
