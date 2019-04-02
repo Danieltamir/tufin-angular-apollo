@@ -6,6 +6,7 @@ import {map} from "rxjs/internal/operators";
 import {Observable} from "rxjs/index";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DeveloperModalComponent} from "./developer-modal/developer-modal.component";
+import {DevelopersService} from "./services/developers.service";
 
 @Component({
     selector: 'app-root',
@@ -13,30 +14,43 @@ import {DeveloperModalComponent} from "./developer-modal/developer-modal.compone
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    developers: any;
+    developers: Observable<any>;
     viewContainerRef: ViewContainerRef;
 
-    constructor(private apollo: Apollo, private modalService: NgbModal) {
+    constructor(private apollo: Apollo, private modalService: NgbModal, private developerService: DevelopersService) {
     }
 
     ngOnInit() {
-        this.apollo.query<Query>({
-            query: gql`
-                query getDevelopers {
-                    getDevelopers {
-                        firstName
-                        lastName
-                        age
-                    }
-                }
-            `,
-        }).subscribe(result => {
-            this.developers = result.data.getDevelopers
+        this.developers = this.developerService.getAllDevelopers();
+        this.developerService.updateDeveloper$.subscribe(developerInfo => {
+            this.updateDevelopersInfo(developerInfo);
         })
     }
 
     openDeveloperModal(developerIndex: number) {
         const modalRef = this.modalService.open(DeveloperModalComponent);
         modalRef.componentInstance.developerIndex = developerIndex;
+        modalRef.result.then(developerInformation => {
+
+        })
+    }
+
+    updateDevelopersInfo(developerInfo) {
+        console.log(developerInfo);
+        if (!developerInfo.developerIndex) {
+            this.developers = [{
+                firstName: developerInfo.develoepr.firstName,
+                lastName: developerInfo.develoepr.lastName,
+                age: developerInfo.develoepr.age
+            }, ...this.developers];
+        }
+        else {
+            this.developers[developerInfo.developerIndex] = {
+                firstName: developerInfo.develoepr.firstName,
+                lastName: developerInfo.develoepr.lastName,
+                age: developerInfo.develoepr.age
+            };
+        }
+
     }
 }

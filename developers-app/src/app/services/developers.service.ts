@@ -3,11 +3,14 @@ import {Apollo} from "apollo-angular";
 import {addDeveloperMutation, editDeveloperMutation} from "../mutations";
 import {Query} from "../types";
 import gql from "graphql-tag";
+import {Observable, Subject} from "rxjs/index";
 
 @Injectable({
     providedIn: 'root'
 })
 export class DevelopersService {
+
+    public updateDeveloper$ = new Subject();
 
     constructor(private apollo: Apollo) {
     }
@@ -21,21 +24,37 @@ export class DevelopersService {
         });
     }
 
-    // getDeveloperById(developer: any) {
-    //     this.apollo.query<Query>({
-    //         query: gql`
-    //             query getDeveloperById {
-    //                 getDeveloperById {
-    //                     firstName
-    //                     lastName
-    //                     age
-    //                 }
-    //             }
-    //         `,
-    //     }).subscribe(result => {
-    //         this.developers = result.data.getDevelopers
-    //     })
-    // }
+    getAllDevelopers(): Observable<any> {
+        return this.apollo.query<Query>({
+            query: gql`
+                query getDevelopers {
+                    developers{
+                        list {
+                            firstName
+                            lastName
+                            age
+                        }
+                    }
+                }
+            `,
+        });
+    }
+
+    getDeveloperById(developer: any) {
+        this.apollo.query<Query>({
+            query: gql`
+                query getDeveloperById {
+                    developers(developerId: 1) {
+                        single {
+                            firstName
+                            lastName
+                            age
+                        }
+                    }
+                }
+            `,
+        });
+    }
 
     editDeveloper(developer: any) {
         return this.apollo.mutate({

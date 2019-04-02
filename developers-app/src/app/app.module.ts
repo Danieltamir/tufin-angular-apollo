@@ -9,6 +9,7 @@ import {ApolloModule} from "apollo-angular";
 import {FormsModule} from "@angular/forms";
 import {DeveloperModalComponent} from "./developer-modal/developer-modal.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {ScrollingModule} from "@angular/cdk/scrolling";
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
         GraphQLModule,
         HttpClientModule,
         FormsModule,
-        NgbModule
+        NgbModule,
+        ScrollingModule
     ],
     providers: [],
     entryComponents: [DeveloperModalComponent],

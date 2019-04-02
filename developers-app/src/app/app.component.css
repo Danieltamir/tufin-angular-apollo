@@ -1,8 +1,67 @@
 .app-header {
-    background: #FF9800;
+    background: #383d41;
     box-shadow: 1px 1px 1px 1px;
     font-size: 3em;
     padding-left: 28%;
+    color: white;
+    text-shadow: 2px 2px red;
     font-family: fantasy;
-    text-transform: uppercase;
+}
+
+.app-body {
+    background: #b63032;
+}
+
+.header-image {
+    height: 67px;
+    position: absolute;
+    left: 18px;
+}
+
+.example-viewport {
+    height: calc(100vh - 85px);
+    border-top: solid 1px white;
+}
+
+.card {
+    box-shadow: 1px 1px 6px 3px #383d41;
+    border-radius: 50px;
+    margin: 10px;
+}
+
+.add-developer-btn {
+    position: absolute;
+    width: 20%;
+    right: 20px;
+    top: 15px;
+    color: #b63032;
+    border-radius: 20px;
+    background: white;
+}
+
+.add-developer-btn:active {
+    position: absolute;
+    width: 20%;
+    right: 20px;
+    top: 15px;
+    color: white;
+    border-radius: 20px;
+    background-color: #b63032 !important;
+}
+
+.delete-btn {
+    position: absolute;
+    right: 17%;
+    width: 29%;
+    top: -7px;
+    border-radius: 50%;
+}
+
+.grid-header {
+    color: white;
+    font-weight: bold;
+    width: 97%;
+    margin-left: 0.9%;
+    margin: 0.5em;
+    font-size: 1.5em;
 }

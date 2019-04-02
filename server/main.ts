@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as graphqlHTTP from 'express-graphql'
-import {addMockFunctionsToSchema, makeExecutableSchema} from 'graphql-tools'
+import {addMockFunctionsToSchema, makeExecutableSchema, MockList} from 'graphql-tools'
 import * as faker from 'faker';
 
 // Construct a schema, using GraphQL schema language
@@ -21,10 +21,14 @@ var typeDefs = `
   }   
     
   type Query {
-    getDevelopers: [Developer]
-    getDeveloperById(developerId: Int): Developer!
+    developers: DeveloperQuery
   }
   
+  type DeveloperQuery {
+  list: [Developer!]!
+  single(developerId: Int): Developer!
+  }
+
   type MutationResult {
     successful: Boolean
   }
@@ -57,7 +61,13 @@ const mocks = {
     Developer: () => ({
         firstName: () => faker.name.firstName(),
         lastName: () => faker.name.firstName(),
+        age: () => faker.random.number(100)
     }),
+    Query: () => ({
+        developers: () => ({
+            list: () => new MockList([100,300])
+        }),
+    })
 };
 
 addMockFunctionsToSchema({
