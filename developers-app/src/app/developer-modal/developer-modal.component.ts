@@ -11,8 +11,8 @@ import {Subscription} from "rxjs/index";
 export class DeveloperModalComponent implements OnInit, OnDestroy {
 
     @Input() developerIndex: number;
-    developerSubscription: Subscription;
-    developer: any = {
+    public developerSubscription: Subscription;
+    public developer: any = {
         locationInfo: {}
     };
 
@@ -22,12 +22,12 @@ export class DeveloperModalComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        if (this.developerIndex) {
+        if (this.developerIndex && this.developerIndex >= 0) {
             this.developerSubscription = this.developersService.getDeveloperById().subscribe((response) => {
                 this.developer = response.data.getDeveloperById;
             });
         }
-        else this.developer.locationInfo = {}
+        else this.developer.locationInfo = {};
     }
 
     ngOnDestroy() {

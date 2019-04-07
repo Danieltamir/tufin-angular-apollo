@@ -68,7 +68,7 @@ export class DevelopersService {
         });
     }
 
-    deleteDeveloper(developerIndex: number) {
+    deleteDeveloper() {
         return this.apollo.mutate({
             mutation: gql`
                 mutation deleteDeveloperById {
