@@ -1,15 +1,17 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {DevelopersService} from "../services/developers.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Subscription} from "rxjs/index";
 
 @Component({
     selector: 'app-developer-modal',
     templateUrl: './developer-modal.component.html',
     styleUrls: ['./developer-modal.component.css']
 })
-export class DeveloperModalComponent implements OnInit {
+export class DeveloperModalComponent implements OnInit, OnDestroy {
 
     @Input() developerIndex: number;
+    developerSubscription: Subscription;
     developer: any = {
         locationInfo: {}
     };
@@ -21,11 +23,15 @@ export class DeveloperModalComponent implements OnInit {
 
     ngOnInit() {
         if (this.developerIndex) {
-            this.developer = this.developersService.getDeveloperById(this.developerIndex).subscribe(result => {
-                result.data.developers.single
+            this.developerSubscription = this.developersService.getDeveloperById().subscribe((response) => {
+                this.developer = response.data.getDeveloperById;
             });
         }
         else this.developer.locationInfo = {}
+    }
+
+    ngOnDestroy() {
+        this.developerSubscription.unsubscribe();
     }
 
     addNewDeveloper() {

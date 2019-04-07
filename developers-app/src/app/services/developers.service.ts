@@ -28,27 +28,30 @@ export class DevelopersService {
         return this.apollo.query<Query>({
             query: gql`
                 query getDevelopers {
-                    developers{
-                        list {
-                            firstName
-                            lastName
-                            age
-                        }
+                    getDevelopers {
+                        firstName
+                        lastName
+                        age
                     }
                 }
             `,
         });
     }
 
-    getDeveloperById(developer: any) {
-        this.apollo.query<Query>({
+    getDeveloperById(): Observable<any> {
+        return this.apollo.query<Query>({
             query: gql`
                 query getDeveloperById {
-                    developers(developerId: 1) {
-                        single {
-                            firstName
-                            lastName
-                            age
+                    getDeveloperById {
+                        firstName
+                        lastName
+                        age
+                        lovesAngular
+                        locationInfo {
+                            address
+                            city
+                            country
+                            postalCode
                         }
                     }
                 }
@@ -66,6 +69,15 @@ export class DevelopersService {
     }
 
     deleteDeveloper(developerIndex: number) {
-
+        return this.apollo.mutate({
+            mutation: gql`
+                mutation deleteDeveloperById {
+                    deleteDeveloper(input: 1) {
+                        successful
+                    }
+                }
+            `,
+        })
     }
+
 }

@@ -1,5 +1,5 @@
 .app-header {
-    background: #383d41;
+    background: #eb6836;
     box-shadow: 1px 1px 1px 1px;
     font-size: 3em;
     padding-left: 28%;
@@ -9,7 +9,11 @@
 }
 
 .app-body {
-    background: #b63032;
+    background: #4b4646;
+}
+
+.card-body {
+    padding: 1rem;
 }
 
 .header-image {
@@ -21,6 +25,11 @@
 .example-viewport {
     height: calc(100vh - 85px);
     border-top: solid 1px white;
+}
+
+.card:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }
 
 .card {

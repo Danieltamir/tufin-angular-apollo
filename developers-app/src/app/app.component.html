@@ -10,13 +10,13 @@
         <div class="col-md-3">Age</div>
     </div>
     <cdk-virtual-scroll-viewport [itemSize]="78" class="example-viewport">
-        <div class="card" *cdkVirtualFor="let developer of developers | async ; let index = index">
+        <div class="card" *cdkVirtualFor="let developer of developers$ ; let index = index">
             <div class="card-body">
-                <div class="row" (click)="openDeveloperModal(index)">
-                    <div class="col-md-4">{{developer.firstName}}</div>
-                    <div class="col-md-4">{{developer.lastName}}</div>
-                    <div class="col-md-3">{{developer.age}}</div>
-                    <div class="col-md-1"><button class="btn btn-danger btn-block delete-btn">X</button></div>
+                <div class="row">
+                    <div class="col-md-4" (click)="openDeveloperModal(index)">{{developer.firstName}}</div>
+                    <div class="col-md-4" (click)="openDeveloperModal(index)">{{developer.lastName}}</div>
+                    <div class="col-md-3" (click)="openDeveloperModal(index)">{{developer.age}}</div>
+                    <div class="col-md-1"><button class="btn btn-danger btn-block delete-btn" (click)="deleteDeveloper(index)">X</button></div>
                 </div>
             </div>
         </div>
