@@ -4,57 +4,56 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Subscription} from "rxjs/index";
 
 @Component({
-    selector: 'app-developer-modal',
-    templateUrl: './developer-modal.component.html',
-    styleUrls: ['./developer-modal.component.css']
+  selector: 'app-developer-modal',
+  templateUrl: './developer-modal.component.html',
+  styleUrls: ['./developer-modal.component.css']
 })
 export class DeveloperModalComponent implements OnInit, OnDestroy {
 
-    @Input() developerIndex: number;
-    public developerSubscription: Subscription;
-    public developer: any = {
-        locationInfo: {}
-    };
+  @Input() developerIndex: number;
+  @Output() onUpdateDeveloper = new EventEmitter();
+  public developerSubscription: Subscription;
+  public developer: any = {
+    locationInfo: {}
+  };
 
-    @Output() onUpdateDeveloper = new EventEmitter();
+  constructor(private developersService: DevelopersService, private modalService: NgbModal) {
+  }
 
-    constructor(private developersService: DevelopersService, private modalService: NgbModal) {
-    }
+  ngOnInit() {
+    if (this.developerIndex && this.developerIndex >= 0) {
+      this.developerSubscription = this.developersService.getDeveloperById().subscribe((response) => {
+        this.developer = response.data.getDeveloperById;
+      });
+    } else this.developer.locationInfo = {};
+  }
 
-    ngOnInit() {
-        if (this.developerIndex && this.developerIndex >= 0) {
-            this.developerSubscription = this.developersService.getDeveloperById().subscribe((response) => {
-                this.developer = response.data.getDeveloperById;
-            });
-        }
-        else this.developer.locationInfo = {};
-    }
+  ngOnDestroy() {
+    if (this.developerSubscription)
+      this.developerSubscription.unsubscribe();
+  }
 
-    ngOnDestroy() {
-        this.developerSubscription.unsubscribe();
-    }
-
-    addNewDeveloper() {
-        this.developersService.addNewDeveloper(this.developer).subscribe(resultStatus => {
-            if (resultStatus.data.addNewDeveloper.successful) {
-                this.modalService.dismissAll();
-                this.developersService.updateDeveloper$.next({
-                    developer: this.developer,
-                    developerIndex: this.developerIndex
-                });
-            }
+  addNewDeveloper() {
+    this.developersService.addNewDeveloper(this.developer).subscribe(resultStatus => {
+      if (resultStatus.data.addNewDeveloper.successful) {
+        this.modalService.dismissAll();
+        this.developersService.updateDeveloper$.next({
+          developer: this.developer,
+          developerIndex: this.developerIndex
         });
-    }
+      }
+    });
+  }
 
-    editDeveloper() {
-        this.developersService.editDeveloper(this.developer).subscribe(resultStatus => {
-            if (resultStatus.data.editDeveloper.successful) {
-                this.modalService.dismissAll();
-                this.developersService.updateDeveloper$.next({
-                    developer: this.developer,
-                    developerIndex: this.developerIndex
-                });
-            }
+  editDeveloper() {
+    this.developersService.editDeveloper(this.developer).subscribe(resultStatus => {
+      if (resultStatus.data.editDeveloper.successful) {
+        this.modalService.dismissAll();
+        this.developersService.updateDeveloper$.next({
+          developer: this.developer,
+          developerIndex: this.developerIndex
         });
-    }
+      }
+    });
+  }
 }

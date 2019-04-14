@@ -30,26 +30,24 @@ export class AppComponent implements OnInit, OnDestroy {
     openDeveloperModal(developerIndex: number) {
         const modalRef = this.modalService.open(DeveloperModalComponent);
         modalRef.componentInstance.developerIndex = developerIndex;
-        modalRef.result.then(developerInformation => {
-
-        })
     }
 
     updateDevelopersInfo(developerInfo) {
         console.log(developerInfo);
         if (!developerInfo.developerIndex) {
             this.developers$ = [{
-                firstName: developerInfo.develoepr.firstName,
-                lastName: developerInfo.develoepr.lastName,
-                age: developerInfo.develoepr.age
+                firstName: developerInfo.developer.firstName,
+                lastName: developerInfo.developer.lastName,
+                age: developerInfo.developer.age
             }, ...this.developers$];
         }
         else {
             this.developers$[developerInfo.developerIndex] = {
-                firstName: developerInfo.develoepr.firstName,
-                lastName: developerInfo.develoepr.lastName,
-                age: developerInfo.develoepr.age
+                firstName: developerInfo.developer.firstName,
+                lastName: developerInfo.developer.lastName,
+                age: developerInfo.developer.age
             };
+            this.developers$ = [...this.developers$];
         }
     }
 
