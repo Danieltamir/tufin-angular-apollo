@@ -6,14 +6,18 @@ import {GraphQLModule} from './graphql/graphql.module';
 import {HttpClientModule} from '@angular/common/http';
 import {ApolloModule} from "apollo-angular";
 import {FormsModule} from "@angular/forms";
-import {DeveloperModalComponent} from "./developer-modal/developer-modal.component";
+import {CharacterModalComponent} from "./components/character-modal/character-modal.component";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {ScrollingModule} from "@angular/cdk/scrolling";
+import { CharactersListComponent } from './components/characters-list/characters-list.component';
+import { DragonsListComponent } from './components/dragons-list/dragons-list.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        DeveloperModalComponent
+        CharacterModalComponent,
+        CharactersListComponent,
+        DragonsListComponent
     ],
     imports: [
         BrowserModule,
@@ -26,7 +30,7 @@ import {ScrollingModule} from "@angular/cdk/scrolling";
         ScrollingModule
     ],
     providers: [],
-    entryComponents: [DeveloperModalComponent],
+    entryComponents: [CharacterModalComponent],
     bootstrap: [AppComponent]
 })
 export class AppModule {

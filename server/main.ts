@@ -11,7 +11,7 @@ const schema = makeExecutableSchema({typeDefs});
 addMockFunctionsToSchema({
     schema,
     mocks
-})
+});
 
 var app = express();
 

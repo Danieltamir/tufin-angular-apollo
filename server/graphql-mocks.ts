@@ -2,9 +2,9 @@ import {MockList} from "graphql-tools";
 import * as faker from 'faker';
 
 export const mocks = {
-    Developer: () => ({
+    Character: () => ({
         firstName: () => faker.name.firstName(),
-        lastName: () => faker.name.firstName(),
+        lastName: () => selectFamilyName(),
         age: () => faker.random.number(100)
     }),
     Location: () => ({
@@ -13,10 +13,26 @@ export const mocks = {
         country: () => faker.address.country(),
         postalCode: () => faker.random.number(100)
     }),
+    Dragon: () => ({
+        name: () => selectDragonName(),
+    }),
     MutationResult: () => ({
         successful: () => true
     }),
     Query: () => ({
-        getDevelopers: () => new MockList([100,300]),
+        characters: () => new MockList([100,300]),
+        dragons: () => new MockList(3),
     })
 };
+
+export function selectFamilyName() {
+    let families = ['Targaryen','Stark ','Lannister','Arryn', 'Tully','Greyjoy', 'Baratheon', 'Tyrell'];
+    let randomNumber = Math.floor(Math.random()*families.length);
+    return families[randomNumber];
+}
+
+export function selectDragonName() {
+    let families = ['Drogon','Viserion','Rhaegal'];
+    let randomNumber = Math.floor(Math.random()*families.length);
+    return families[randomNumber];
+}

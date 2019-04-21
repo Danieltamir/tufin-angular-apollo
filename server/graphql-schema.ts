@@ -1,9 +1,19 @@
 export const typeDefs = `
-  type Developer {
+
+  ## Queries! 
+  ## =========================================
+  
+  type Query {
+    characters: [Character]
+    dragons: [Dragon]
+    getCharacterByName(name: String): Character
+  }
+  
+  type Character {
     firstName: String
     lastName: String
     age: Int
-    lovesAngular : Boolean
+    alive: Boolean
     locationInfo : Location
   } 
   
@@ -14,20 +24,34 @@ export const typeDefs = `
     postalCode : Int
   }   
     
-  type Query {
-    getDevelopers: [Developer]
-    getDeveloperById: Developer
+  type Dragon {
+    name: String
+    height: Int
+    age: Int
+    kills: Int
+    fireType: FireType
   }
   
-  type MutationResult {
-    successful: Boolean
+  enum FireType {
+    FIRE
+    ICE
+  }
+
+  ## Mutations! 
+  ## =========================================
+  
+  type Mutation {
+    addNewCharacter(input: CharacterInput): MutationResult!
+    editCharacter(input: CharacterInput): MutationResult!
+    killCharacter(input: CharacterInput): MutationResult!
+    deleteCharacter(input: Int): MutationResult!
   }
   
-  input DeveloperInput {
-    firstName: String
+  input CharacterInput {
+    firstName: String!
     lastName: String
     age: Int
-    lovesAngular : Boolean
+    alive : Boolean
     locationInfo : LocationInput
   } 
   
@@ -38,9 +62,7 @@ export const typeDefs = `
     postalCode : Int
   }  
   
-  type Mutation {
-    addNewDeveloper(input: DeveloperInput!): MutationResult!
-    editDeveloper(input: DeveloperInput): MutationResult!
-    deleteDeveloper(input: Int): MutationResult!
+  type MutationResult {
+    successful: Boolean
   }
 `;

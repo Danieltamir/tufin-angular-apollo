@@ -21,4 +21,5 @@ export function createApollo(httpLink: HttpLink) {
     },
   ],
 })
-export class GraphQLModule {}
+export class GraphQLModule {
+}

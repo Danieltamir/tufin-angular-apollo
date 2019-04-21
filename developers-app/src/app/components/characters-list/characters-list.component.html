@@ -1,0 +1,32 @@
+<div class="row grid-header" (onUpdateDeveloper)="updateCharactersInfo($event)">
+  <div class="col-md-4">First Name</div>
+  <div class="col-md-4">Last Name</div>
+  <div class="col-md-2 kill-alignment">Health</div>
+  <div class="col-md-1">Kill</div>
+</div>
+<cdk-virtual-scroll-viewport [itemSize]="78" class="example-viewport">
+  <div class="card" *cdkVirtualFor="let character of characters$ ; let index = index">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4" (click)="openDeveloperModal(index)">{{character.firstName}}</div>
+        <div class="col-md-4" (click)="openDeveloperModal(index)">{{character.lastName}}</div>
+        <div class="col-md-2" (click)="openDeveloperModal(index)">
+          <img class="life-icon" [src]="character.alive?
+                       'https://cdn1.iconfinder.com/data/icons/charity-7/300/heartbeat-life-landscape-plant-flower-alive-sport-fitness-512.png' :
+                       'https://cdn1.iconfinder.com/data/icons/faces-and-emotions/32/emotion_face_avatar_emoji_dead_or_alive-512.png'"
+               alt="">
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-warning btn-block delete-btn"
+                  (click)="killCharacter(character)"
+                  [hidden]="!character.alive">
+            <img style="width: 24px" src="../assets/kill.svg" alt="">
+          </button>
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-danger btn-block delete-btn" (click)="deleteCharacter(character, index)">X</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>

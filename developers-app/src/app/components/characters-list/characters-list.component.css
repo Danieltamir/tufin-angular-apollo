@@ -1,0 +1,48 @@
+.example-viewport {
+  height: calc(100vh - 85px);
+  border-top: solid 1px white;
+}
+
+.card:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.card {
+  box-shadow: 1px 1px 6px 3px #383d41;
+  border-radius: 50px;
+  margin: 10px;
+}
+
+.kill-alignment {
+  margin-left: 0%;
+  margin-right: 4.5%;
+}
+
+.delete-btn {
+  position: absolute;
+  right: 17%;
+  width: 29%;
+  top: -7px;
+  border-radius: 50%;
+}
+
+.grid-header {
+  color: white;
+  font-weight: bold;
+  width: 97%;
+  margin-left: 0.9%;
+  margin: 0.5em;
+  font-size: 1.5em;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.life-icon {
+  position: absolute;
+  width: 50px;
+  top: -10px;
+}
+

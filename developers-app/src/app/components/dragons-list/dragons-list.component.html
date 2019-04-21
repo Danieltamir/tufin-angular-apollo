@@ -1,0 +1,21 @@
+<div class="row grid-header">
+  <div class="col-md-4">Name</div>
+  <div class="col-md-4">Kills</div>
+  <div class="col-md-2 kill-alignment">Fire Type</div>
+</div>
+<cdk-virtual-scroll-viewport [itemSize]="78" class="example-viewport">
+  <div class="card" *cdkVirtualFor="let dragon of dragons$ ; let index = index">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">{{dragon.name}}</div>
+        <div class="col-md-4">{{dragon.kills}}</div>
+        <div class="col-md-2">
+          <img class="life-icon" [src]="dragon.fireType === 'FIRE'?
+                       'https://img.icons8.com/color/180/fire-element.png' :
+                       'https://cdn1.iconfinder.com/data/icons/healthcare-research/512/cool-frost-512.png'"
+               alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>
