@@ -15,6 +15,7 @@ export const mocks = {
     }),
     Dragon: () => ({
         name: () => selectDragonName(),
+        kills: () => faker.random.number(),
     }),
     MutationResult: () => ({
         successful: () => true
