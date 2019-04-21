@@ -68,7 +68,6 @@ export class CharacterService {
         character: {
           firstName: character.firstName,
           lastName: character.lastName,
-          alive: character.alive,
         }
       }
     })

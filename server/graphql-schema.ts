@@ -44,7 +44,7 @@ export const typeDefs = `
     addNewCharacter(input: CharacterInput): MutationResult!
     editCharacter(input: CharacterInput): MutationResult!
     killCharacter(input: CharacterInput): MutationResult!
-    deleteCharacter(input: Int): MutationResult!
+    deleteCharacter(input: CharacterInput): MutationResult!
   }
   
   input CharacterInput {
