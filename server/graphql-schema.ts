@@ -6,15 +6,18 @@ export const typeDefs = `
   type Query {
     characters: [Character]
     dragons: [Dragon]
-    getCharacterByName(name: String): Character
+    getCharacterById(id: ID!): Character
   }
   
   type Character {
+    id: ID
     firstName: String
     lastName: String
     age: Int
     alive: Boolean
     locationInfo : Location
+    father: Character
+    mother: Character
   } 
   
   type Location {
@@ -25,14 +28,15 @@ export const typeDefs = `
   }   
     
   type Dragon {
+    id: ID
     name: String
     height: Int
     age: Int
     kills: Int
-    fireType: FireType
+    type: DragonType
   }
   
-  enum FireType {
+  enum DragonType {
     FIRE
     ICE
   }
@@ -43,8 +47,8 @@ export const typeDefs = `
   type Mutation {
     addNewCharacter(input: CharacterInput): MutationResult!
     editCharacter(input: CharacterInput): MutationResult!
-    killCharacter(input: CharacterInput): MutationResult!
-    deleteCharacter(input: CharacterInput): MutationResult!
+    killCharacter(characterId: ID): MutationResult!
+    deleteCharacter(characterId: ID): MutationResult!
   }
   
   input CharacterInput {

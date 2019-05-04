@@ -16,6 +16,6 @@ export class AppComponent implements OnInit {
 
   openDeveloperModal(characterIndex: number) {
     const modalRef = this.modalService.open(CharacterModalComponent);
-    modalRef.componentInstance.characterIndex = characterIndex;
+    modalRef.componentInstance.characterId = characterIndex;
   }
 }

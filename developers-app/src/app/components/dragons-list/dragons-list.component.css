@@ -23,7 +23,6 @@
   position: absolute;
   right: 17%;
   width: 29%;
-  top: -7px;
   border-radius: 50%;
 }
 
@@ -42,9 +41,4 @@
   padding: 1.1rem !important;
 }
 
-.life-icon {
-  position: absolute;
-  width: 50px;
-  top: -10px;
-}
 

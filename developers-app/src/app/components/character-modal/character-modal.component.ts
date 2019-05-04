@@ -10,6 +10,7 @@ import {Subscription} from "rxjs";
 })
 export class CharacterModalComponent implements OnInit, OnDestroy {
 
+  @Input() characterId: any;
   @Input() characterIndex: number;
   @Output() onUpdateDeveloper = new EventEmitter();
   public characterSubscription: Subscription;
@@ -19,9 +20,9 @@ export class CharacterModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    if (this.characterIndex && this.characterIndex >= 0) {
-      this.characterSubscription = this.characterService.getCharacterByName().subscribe((response) => {
-        this.character = response.data.getCharacterByName;
+    if (this.characterId) {
+      this.characterSubscription = this.characterService.getCharacterById(this.characterId).subscribe((response) => {
+        this.character = response.data.getCharacterById;
       });
     } else this.character.locationInfo = {};
   }
@@ -32,7 +33,7 @@ export class CharacterModalComponent implements OnInit, OnDestroy {
         this.modalService.dismissAll();
         this.characterService.updateCharacter$.next({
           character: this.character,
-          characterIndex: this.characterIndex
+          characterIndex: this.characterId
         });
       }
     });

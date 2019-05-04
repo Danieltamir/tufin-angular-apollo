@@ -7,7 +7,7 @@ import {
   killCharacterMutation
 } from "../graphql/mutations";
 import {Observable, Subject} from "rxjs/index";
-import {getAllCharactersQuery, getCharacterByNameQuery} from "../graphql/queries";
+import {getAllCharactersQuery, getCharacterByIdQuery} from "../graphql/queries";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,10 @@ export class CharacterService {
 
   public updateCharacter$ = new Subject();
 
-  constructor(private apollo: Apollo) {
-  }
+  constructor(private apollo: Apollo) {}
+
+  /**Below you will find the characters queries**/
+  /**==========================================**/
 
   getAllCharacters(): Observable<any> {
     return this.apollo.query({
@@ -26,11 +28,15 @@ export class CharacterService {
     });
   }
 
-  getCharacterByName(): Observable<any> {
+  getCharacterById(characterId): Observable<any> {
     return this.apollo.query({
-      query: getCharacterByNameQuery()
+      query: getCharacterByIdQuery,
+      variables: {characterId: characterId}
     });
   }
+
+  /**Below you will find the characters mutations**/
+  /**==========================================**/
 
   addNewCharacter(character: any) {
     return this.apollo.mutate({
@@ -61,27 +67,20 @@ export class CharacterService {
     });
   }
 
-  deleteCharacterByName(character) {
+  deleteCharacter(characterId) {
     return this.apollo.mutate({
       mutation: deleteCharacterMutation,
       variables: {
-        character: {
-          firstName: character.firstName,
-          lastName: character.lastName,
-        }
+          characterId: characterId
       }
     })
   }
 
-  killCharacterByName(character) {
+  killCharacter(characterId) {
     return this.apollo.mutate({
       mutation: killCharacterMutation,
       variables: {
-        character: {
-          firstName: character.firstName,
-          lastName: character.lastName,
-          alive: character.alive,
-        }
+        characterId: characterId
       }
     })
   }

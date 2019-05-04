@@ -17,18 +17,20 @@ export class CharactersListComponent implements OnInit , OnDestroy {
   }
 
   ngOnInit() {
-    this.charactersSubscription = this.characterService.getAllCharacters().subscribe((response) => {
+    this.charactersSubscription = this.characterService.getAllCharacters()
+      .subscribe((response) => {
       this.characters$ = response.data.characters;
     });
 
-    this.characterService.updateCharacter$.subscribe(characterInfo => {
+    this.characterService.updateCharacter$
+      .subscribe(characterInfo => {
       this.updateCharactersInfo(characterInfo);
     })
   }
 
   deleteCharacter(character, characterIndex) {
-    this.characterService.deleteCharacterByName(character).subscribe((response) => {
-      // console.log(response);
+    this.characterService.deleteCharacter(character.id)
+      .subscribe((response) => {
       if (response.data.deleteCharacter.successful)
         this.characters$ = this.characters$.filter((character, index) => {
           return index !== characterIndex;
@@ -37,8 +39,8 @@ export class CharactersListComponent implements OnInit , OnDestroy {
   }
 
   killCharacter(character) {
-    this.characterService.killCharacterByName(character).subscribe((response) => {
-      // console.log(response);
+    this.characterService.killCharacter(character.id)
+      .subscribe((response) => {
       if (response.data.killCharacter.successful)
         character.alive = false;
     })
@@ -63,8 +65,9 @@ export class CharactersListComponent implements OnInit , OnDestroy {
     }
   }
 
-  openDeveloperModal(characterIndex: number) {
+  openDeveloperModal(characterId, characterIndex: number) {
     const modalRef = this.modalService.open(CharacterModalComponent);
+    modalRef.componentInstance.characterId = characterId;
     modalRef.componentInstance.characterIndex = characterIndex;
   }
 

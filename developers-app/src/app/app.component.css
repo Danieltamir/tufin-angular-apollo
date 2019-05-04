@@ -15,8 +15,15 @@
   box-shadow: 1px -1px 1px 1px white;
 }
 
+.tufin-logo {
+  width: 6%;
+  position: absolute;
+  top: 10px;
+  left: 19px;
+}
+
 .left-menu-item {
-  padding: 60px 22px;
+  padding: 60px 10px;
   text-align: center;
   border: solid 2px white;
   width: 111%;
@@ -30,31 +37,31 @@
 }
 
 .app-body {
-    background-image: url("../assets/bg.jpg");
+  background-image: url("../assets/bg.jpg");
 }
 
 .header-image {
-    height: 67px;
-    position: absolute;
-    left: 18px;
+  height: 67px;
+  position: absolute;
+  left: 12%;
 }
 
 .add-char-btn {
-    position: absolute;
-    width: 20%;
-    right: 20px;
-    top: 15px;
-    color: #1960ae;
-    border-radius: 20px;
-    background: white;
+  position: absolute;
+  width: 20%;
+  right: 20px;
+  top: 15px;
+  color: #1960ae;
+  border-radius: 20px;
+  background: white;
 }
 
 .add-char-btn:active {
-    position: absolute;
-    width: 20%;
-    right: 20px;
-    top: 15px;
-    color: white;
-    border-radius: 20px;
-    background-color: #b63032 !important;
+  position: absolute;
+  width: 20%;
+  right: 20px;
+  top: 15px;
+  color: white;
+  border-radius: 20px;
+  background-color: #b63032 !important;
 }

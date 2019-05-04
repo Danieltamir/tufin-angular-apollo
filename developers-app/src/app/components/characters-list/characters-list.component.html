@@ -8,9 +8,9 @@
   <div class="card" *cdkVirtualFor="let character of characters$ ; let index = index">
     <div class="card-body">
       <div class="row">
-        <div class="col-md-4" (click)="openDeveloperModal(index)">{{character.firstName}}</div>
-        <div class="col-md-4" (click)="openDeveloperModal(index)">{{character.lastName}}</div>
-        <div class="col-md-2" (click)="openDeveloperModal(index)">
+        <div class="col-md-4" (click)="openDeveloperModal(character.id, index)">{{character.firstName}}</div>
+        <div class="col-md-4" (click)="openDeveloperModal(character.id, index)">{{character.lastName}}</div>
+        <div class="col-md-2" (click)="openDeveloperModal(character.id, index)">
           <img class="life-icon" [src]="character.alive?
                        'https://cdn1.iconfinder.com/data/icons/charity-7/300/heartbeat-life-landscape-plant-flower-alive-sport-fitness-512.png' :
                        'https://cdn1.iconfinder.com/data/icons/faces-and-emotions/32/emotion_face_avatar_emoji_dead_or_alive-512.png'"

@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const getAllCharactersQuery = gql`
   query characters {
     characters {
+      id
       firstName
       lastName
       alive
@@ -10,32 +11,30 @@ export const getAllCharactersQuery = gql`
   }
 `;
 
-export function getCharacterByNameQuery() {
-  return gql`
-    query getCharacterByName {
-      getCharacterByName(name: "Daniel") {
-        firstName
-        lastName
-        age
-        alive
-        locationInfo {
-          address
-          city
-          country
-          postalCode
-        }
+export const getCharacterByIdQuery = gql`
+  query getCharacterById($characterId: ID!) {
+    getCharacterById(id: $characterId) {
+      firstName
+      lastName
+      age
+      alive
+      locationInfo {
+        address
+        citys
+        country
+        postalCode
       }
-    }
-  `;
-}
-
-export const getAllDragonsQuery = gql`
-  query dragons {
-    dragons {
-      name
-      kills
-      fireType
     }
   }
 `;
 
+export const getAllDragonsQuery = gql`
+  query dragons {
+    dragons {
+      id
+      name
+      kills
+      type
+    }
+  }
+`;

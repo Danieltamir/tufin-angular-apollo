@@ -18,16 +18,16 @@ export const editCharacterMutation = gql`
 `;
 
 export const deleteCharacterMutation = gql`
-  mutation deleteCharacter($character: CharacterInput) {
-    deleteCharacter(input: $character) {
+  mutation deleteCharacter($characterId: ID!) {
+    deleteCharacter(characterId: $characterId) {
       successful
     }
   }
 `;
 
 export const killCharacterMutation = gql`
-  mutation killCharacter($character: CharacterInput) {
-    killCharacter(input: $character) {
+  mutation killCharacter($characterId: ID!) {
+    killCharacter(characterId: $characterId) {
       successful
     }
   }
