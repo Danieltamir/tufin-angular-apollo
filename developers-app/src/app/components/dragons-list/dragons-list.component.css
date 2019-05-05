@@ -38,7 +38,12 @@
 .card-body {
   flex: 1 1 auto;
   font-size: 1.5em;
+  font-weight: bold;
   padding: 1.1rem !important;
 }
 
-
+.life-icon {
+  position: absolute;
+  width: 50px;
+  top: -10px;
+}
