@@ -5,7 +5,7 @@ export const mocks = {
     Character: () => ({
         firstName: () => faker.name.firstName(),
         lastName: () => selectFamilyName(),
-        age: () => faker.random.number(100)
+        age: () => faker.random.number([10,100])
     }),
     Location: () => ({
         address: () => faker.address.streetName(),
@@ -16,6 +16,7 @@ export const mocks = {
     Dragon: () => ({
         name: () => selectDragonName(),
         kills: () => faker.random.number(),
+        height: () => faker.random.number([10,100]),
     }),
     MutationResult: () => ({
         successful: () => true

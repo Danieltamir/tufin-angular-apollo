@@ -1,11 +1,12 @@
 import * as express from 'express';
 import * as graphqlHTTP from 'express-graphql'
+import * as cors from 'cors'
 import {addMockFunctionsToSchema, makeExecutableSchema} from 'graphql-tools'
 import {mocks} from "./graphql-mocks";
-import {typeDefs} from "./graphql-schema";
+import {schemaTypes} from "./graphql-schema";
 
 /**Step 1 : Generating our schema!**/
-const schema = makeExecutableSchema({typeDefs});
+const schema = makeExecutableSchema({typeDefs: schemaTypes});
 
 /**Step 2 : Adding mocks to the schema!**/
 addMockFunctionsToSchema({
@@ -19,6 +20,7 @@ var app = express();
 app.use('/graphql', graphqlHTTP(() => ({
     schema: schema,
     graphiql: true,
+    cors
 })));
 
 app.listen(4000);

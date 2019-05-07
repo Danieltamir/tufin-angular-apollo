@@ -7,6 +7,10 @@ export const getAllCharactersQuery = gql`
       firstName
       lastName
       alive
+      age
+      father {
+        firstName
+      }
     }
   }
 `;
@@ -20,7 +24,7 @@ export const getCharacterByIdQuery = gql`
       alive
       locationInfo {
         address
-        citys
+        city
         country
         postalCode
       }
